@@ -1,333 +1,94 @@
-# Market Growth & Revenue Analyzer
+# BirdTalk - Chrome Extension
 
-A comprehensive web scraper and analysis tool for **Skool.com** and **Whop.com** that provides growth insights, revenue estimates, and market trends.
+A beautiful Chrome extension that displays the most popular tweets from any Twitter account in your browser sidebar.
 
 ## Features
 
-### 📊 Data Collection
-- **Skool.com**: Scrapes featured communities, categories, member counts, and growth metrics
-- **Whop.com**: Scrapes trending products, sales counts, pricing, and category data
-- **Multi-source approach**: Combines public listings, category pages, and marketplace data
+- 🐦 View popular tweets from any Twitter handle
+- 📊 See engagement metrics (likes, retweets, replies)
+- 🎨 Blue and white theme with a modern, clean interface
+- 📱 Responsive sidebar popup design
+- 🔄 Load more tweets with a single click
+- 💾 Remembers your last searched account
+- 🔐 Securely stores your Twitter API token locally
 
-### 📈 Growth Analysis
-- **Time-period analysis**: 7 days, 30 days, 90 days, 1 year
-- **Category rankings**: Identifies highest growth categories across both platforms
-- **Trend identification**: Emerging vs. declining categories
-- **Comparative metrics**: Platform-by-platform performance analysis
+## Setup Instructions
 
-### 💰 Revenue Estimation
-- **Estimation models**: 
-  - Skool: 15% conversion rate × $25 average monthly price
-  - Whop: Direct sales × unit price extrapolation
-- **Confidence scoring**: Accuracy indicators for each estimate
-- **Aggregate metrics**: Total market size and average revenue per item
+### Step 1: Get Your Twitter API Key
 
-### 🎯 Affiliate Opportunities
-- High-growth category identification
-- High-revenue opportunity highlighting
-- Actionable recommendations for affiliate marketers
+1. Go to [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+2. Create a new app or select an existing one
+3. Navigate to the "Keys and tokens" section
+4. Copy your **Bearer Token** (you need API v2 access)
 
-### 📊 Market Trends & Benchmarks
-- Average, median, min, and max growth rates
-- Market size estimates
-- Platform comparison metrics
-- Industry benchmarks
+### Step 2: Install the Extension
 
-### 📥 Export Options
-- **CSV Format**: Tabular data exports with filtering
-  - Main analysis: `market_analysis_*.csv`
-  - Growth report: `growth_report_*.csv`
-  - Affiliate opportunities: `affiliate_opportunities_*.csv`
-- **JSON Format**: Complete data structure for programmatic access
+1. Clone or download this repository
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable "Developer mode" (toggle in top right)
+4. Click "Load unpacked" and select the folder containing this extension
+5. The BirdTalk extension should now appear in your extensions list
 
-## Installation
+### Step 3: Configure Your API Key
 
-```bash
-# Clone or navigate to project directory
-cd /path/to/project
+1. Click the BirdTalk extension icon in your Chrome toolbar
+2. Scroll down and click the "⚙️ API Configuration" section
+3. Paste your Twitter API Bearer Token
+4. Click "Save Token"
 
-# Install dependencies
-pip install -r requirements.txt
-```
+## How to Use
 
-## Usage
-
-### Option 1: Web Dashboard (Recommended) 🎨
-
-The easiest way to use the analyzer is through the interactive web dashboard.
-
-#### Start the Dashboard
-```bash
-# On macOS/Linux
-./run_dashboard.sh
-
-# On Windows
-run_dashboard.bat
-
-# Or manually
-pip install -r requirements.txt
-python -m uvicorn app:app --reload
-```
-
-Then open your browser to: **http://localhost:8000**
-
-**Features:**
-- Click "🔄 Start Analysis" to begin scraping
-- Real-time progress updates
-- Interactive charts and tables
-- Export data as CSV or JSON
-- View all metrics and trends in one place
-
-### Option 2: Command Line
-```bash
-# Run complete analysis with CSV export and console summary
-python main.py --summary
-
-# Export to JSON instead
-python main.py --format json
-
-# Export to both formats
-python main.py --format all --summary
-```
-
-### Web Dashboard Features
-
-The interactive dashboard provides:
-
-#### 📊 Dashboard Sections
-1. **Market Metrics** - Total market size, average growth rates, platform comparison
-2. **Top Growth Categories** - Visual chart and table of highest-growth categories
-3. **Market Trends** - Emerging vs. declining categories, platform comparison
-4. **Affiliate Opportunities** - High-potential marketing targets
-5. **Revenue Details** - Detailed revenue metrics and export options
-
-#### 🎯 Key Actions
-- **Start Analysis** - Trigger scraping from the dashboard (no CLI needed)
-- **View Real-time Progress** - See scraping status as it runs
-- **Interactive Charts** - Click-through data visualization with Chart.js
-- **Export Options** - Download as CSV or JSON directly from the UI
-- **Live Metrics** - Update timestamp shows when data was last collected
-
-#### 🔗 API Documentation
-Access Swagger API docs at: http://localhost:8000/docs
-
-### Command-line Options (main.py)
-```bash
-python main.py --help
-
-Options:
-  --format {csv,json,all}    Export format (default: csv)
-  --summary                   Print summary to console
-  --no-export                 Skip export step (analysis only)
-```
-
-## Project Structure
-
-```
-├── app.py                 # FastAPI web server
-├── dashboard.html         # Interactive web dashboard
-├── main.py                # CLI entry point and orchestrator
-├── config.py              # Configuration settings
-├── analysis.py            # Growth analysis and trends module
-├── export.py              # CSV/JSON export functionality
-├── requirements.txt       # Python dependencies
-├── run_dashboard.sh       # Dashboard startup script (macOS/Linux)
-├── run_dashboard.bat      # Dashboard startup script (Windows)
-├── scrapers/
-│   ├── __init__.py
-│   ├── skool.py          # Skool.com scraper
-│   └── whop.py           # Whop.com scraper
-├── data/                  # Cached/stored data
-├── exports/               # Generated reports and exports
-└── README.md             # This file
-```
-
-## Data Metrics Explained
-
-### Growth Rates
-- **7-Day Growth**: Short-term momentum
-- **30-Day Growth**: Monthly trend
-- **90-Day Growth**: Quarterly performance
-- **1-Year Growth**: Annual perspective
-
-### Revenue Estimates
-- **Estimated Monthly Revenue**: Projected recurring revenue based on member/sales counts
-- **Estimated Annual Revenue**: 12x monthly estimate
-- **Confidence Score**: How reliable the estimate is (0-100%)
-  - Skool: 40% (based on member assumptions)
-  - Whop: 60% (based on actual sales data)
-
-### Benchmarks
-- **Average Growth Rate**: Across all tracked categories
-- **Market Size**: Total estimated revenue across both platforms
-- **Per-item Metrics**: Average revenue per community/product
-
-## Affiliate Opportunities Guide
-
-### High-Growth Categories
-Categories experiencing 20%+ growth are marked as high-potential. These markets are expanding and gaining traction.
-
-**Strategy**: Enter early before market saturation.
-
-### High-Revenue Communities
-Communities/products generating $5K+ monthly revenue indicate established demand.
-
-**Strategy**: Target established audiences with proven monetization.
-
-### Market Gaps
-Categories with few competitors but positive growth indicate untapped potential.
-
-**Strategy**: Create content/products in underserved niches.
-
-## Example Output
-
-### Console Summary
-```
-========================================================================
-TOP GROWTH CATEGORIES (7 Days, 30 Days, 90 Days, 1 Year)
-========================================================================
-
-1. AI & Machine Learning
-   Growth Rate: 45.32%
-   Skool Communities: 23
-   Whop Products: 18
-
-2. Digital Marketing
-   Growth Rate: 38.15%
-   Skool Communities: 41
-   Whop Products: 27
-   
-...
-
-========================================================================
-MARKET TRENDS & BENCHMARKS
-========================================================================
-
-Average Growth Rate: 18.42%
-Median Growth Rate: 15.75%
-Total Market Size: $2,345,678.50
-
-Skool Total Revenue (Estimated): $1,450,230.00
-Whop Total Revenue (Estimated): $895,448.50
-```
-
-## Data Limitations & Disclaimers
-
-1. **Estimation Accuracy**: Revenue estimates are based on visible metrics and assumptions. Actual revenue may vary significantly.
-
-2. **Confidence Levels**:
-   - Skool communities: 40% (member counts only)
-   - Whop products: 60% (based on sales tracking)
-
-3. **Real-time Data**: Snapshots are taken at scrape time. Growth rates are current at that moment.
-
-4. **Platform Changes**: If sites change structure or blocking, scraper may need updates.
-
-5. **Legal/ToS**: Ensure compliance with platform terms of service before commercial use.
-
-## Extending the Scraper
-
-### Add New Data Sources
-1. Create new scraper in `scrapers/new_platform.py`
-2. Implement required methods (scrape_data, estimate_revenue)
-3. Integrate into `main.py`'s `MarketScraper.scrape_all()`
-
-### Custom Analysis
-```python
-from analysis import GrowthAnalyzer
-from scrapers.skool import SkoolScraper
-
-scraper = SkoolScraper()
-data = scraper.get_all_data()
-analyzer = GrowthAnalyzer({"skool": data})
-custom_analysis = analyzer.get_top_growth_categories(limit=20)
-```
-
-### Custom Exports
-```python
-from export import DataExporter
-
-exporter = DataExporter()
-exporter.export_to_csv(your_data, "custom_report.csv")
-```
+1. Click the BirdTalk extension icon in your toolbar
+2. Enter a Twitter handle (with or without @) in the search field
+3. Click "Search" or press Enter
+4. The extension will fetch and display the most popular tweets from that account
+5. Click "Show More Tweets" to load additional tweets
+6. Each tweet shows:
+   - Author name and handle
+   - Tweet text
+   - Like count, retweet count, and reply count
+   - Time posted
 
 ## Troubleshooting
 
-### Website Structure Changes
-If scraping fails, Skool.com or Whop.com may have changed their HTML structure.
-- Update CSS selectors in `scrapers/skool.py` or `scrapers/whop.py`
-- Check browser DevTools for current class names
+### "Please configure your Twitter API key first"
+- Make sure you've saved your API key in the extension settings
+- Your token should be a Bearer Token from Twitter API v2
 
-### Rate Limiting
-If you get connection errors, add delays between requests:
-```python
-import time
-time.sleep(5)  # Add between requests
+### "User not found"
+- Check that you spelled the Twitter handle correctly
+- The account must be public to be accessible via the API
+
+### "Failed to fetch tweets"
+- Your API key might be invalid or expired
+- Check that your app has the correct permissions in the Twitter Developer Portal
+- Make sure your API key has read-only access (you don't need write permissions)
+
+## Technical Details
+
+- **Manifest Version:** 3 (latest Chrome extension standard)
+- **API:** Twitter API v2
+- **Storage:** Chrome local storage (secure and private)
+- **No external dependencies** - pure vanilla JavaScript
+
+## File Structure
+
+```
+.
+├── manifest.json      # Extension configuration
+├── popup.html         # User interface
+├── popup.css          # Styling with blue/white theme
+├── popup.js           # Main logic for fetching and displaying tweets
+├── background.js      # Service worker for background tasks
+└── README.md          # This file
 ```
 
-### Data Quality
-Missing or incomplete data in exports:
-- Ensure website pages are fully loaded before scraping
-- Check network connectivity
-- Verify CSS selectors match current HTML
+## Privacy & Security
 
-## API Reference
-
-### GrowthAnalyzer
-```python
-analyzer = GrowthAnalyzer(data)
-
-# Get top growing categories
-top = analyzer.get_top_growth_categories(limit=10)
-
-# Get market trends
-trends = analyzer.get_market_trends()
-
-# Get industry benchmarks
-benchmarks = analyzer.get_benchmarks()
-
-# Generate complete report
-report = analyzer.generate_report()
-```
-
-### DataExporter
-```python
-exporter = DataExporter()
-
-# Export to CSV
-exporter.export_to_csv(data)
-
-# Export growth report
-exporter.export_growth_report(analysis)
-
-# Export affiliate opportunities
-exporter.export_affiliate_opportunities(opportunities)
-
-# Export to JSON
-exporter.export_to_json(data)
-```
-
-## Performance Notes
-
-- **Scraping Time**: Typically 30-120 seconds depending on site responsiveness
-- **Analysis Time**: <1 second for 100+ items
-- **Memory**: ~50-100MB for typical dataset
-- **Export Speed**: <5 seconds for CSV, <2 seconds for JSON
-
-## Contributing
-
-Areas for improvement:
-- [ ] Real-time data API integration (if available)
-- [ ] Historical data tracking
-- [ ] Predictive growth modeling
-- [ ] Additional platforms (Circle, Mighty Networks, etc.)
-- [ ] Web dashboard UI
-- [ ] Automated scheduled scraping
+- Your API key is stored locally in Chrome and never sent anywhere except to Twitter's servers
+- The extension only makes requests to Twitter's official API
+- No data is collected or stored on external servers
 
 ## License
 
-This project is provided as-is. Ensure compliance with platform ToS before commercial use.
-
-## Support
-
-For issues, update CSS selectors, or add new features - check the source code comments and modify accordingly.
+MIT License - Feel free to use and modify as you like!

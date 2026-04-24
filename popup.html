@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BirdTalk</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">🐦 BirdTalk</h1>
+      <p class="subtitle">Popular tweets from any account</p>
+    </header>
+
+    <div class="input-section">
+      <input
+        type="text"
+        id="twitterHandle"
+        class="input-field"
+        placeholder="Enter Twitter handle (e.g., elonmusk)"
+        autocomplete="off"
+      >
+      <button id="searchBtn" class="search-btn">Search</button>
+    </div>
+
+    <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+      <div class="spinner"></div>
+      <p>Loading tweets...</p>
+    </div>
+
+    <div id="tweetsContainer" class="tweets-container">
+      <!-- Tweets will be inserted here -->
+    </div>
+
+    <div id="noResults" class="no-results" style="display: none;">
+      <p>No tweets found. Try another account!</p>
+    </div>
+
+    <button id="showMoreBtn" class="show-more-btn" style="display: none;">Show More Tweets</button>
+
+    <div class="api-key-section">
+      <details>
+        <summary>⚙️ API Configuration</summary>
+        <div class="api-config">
+          <p class="api-note">Add your Twitter API v2 Bearer Token to use this extension:</p>
+          <input
+            type="password"
+            id="apiKey"
+            class="input-field"
+            placeholder="Bearer Token"
+            autocomplete="off"
+          >
+          <button id="saveApiKeyBtn" class="save-btn">Save Token</button>
+          <p id="apiKeyStatus" class="api-key-status"></p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
