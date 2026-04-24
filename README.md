@@ -52,7 +52,33 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Quick Start
+### Option 1: Web Dashboard (Recommended) 🎨
+
+The easiest way to use the analyzer is through the interactive web dashboard.
+
+#### Start the Dashboard
+```bash
+# On macOS/Linux
+./run_dashboard.sh
+
+# On Windows
+run_dashboard.bat
+
+# Or manually
+pip install -r requirements.txt
+python -m uvicorn app:app --reload
+```
+
+Then open your browser to: **http://localhost:8000**
+
+**Features:**
+- Click "🔄 Start Analysis" to begin scraping
+- Real-time progress updates
+- Interactive charts and tables
+- Export data as CSV or JSON
+- View all metrics and trends in one place
+
+### Option 2: Command Line
 ```bash
 # Run complete analysis with CSV export and console summary
 python main.py --summary
@@ -64,7 +90,28 @@ python main.py --format json
 python main.py --format all --summary
 ```
 
-### Command-line Options
+### Web Dashboard Features
+
+The interactive dashboard provides:
+
+#### 📊 Dashboard Sections
+1. **Market Metrics** - Total market size, average growth rates, platform comparison
+2. **Top Growth Categories** - Visual chart and table of highest-growth categories
+3. **Market Trends** - Emerging vs. declining categories, platform comparison
+4. **Affiliate Opportunities** - High-potential marketing targets
+5. **Revenue Details** - Detailed revenue metrics and export options
+
+#### 🎯 Key Actions
+- **Start Analysis** - Trigger scraping from the dashboard (no CLI needed)
+- **View Real-time Progress** - See scraping status as it runs
+- **Interactive Charts** - Click-through data visualization with Chart.js
+- **Export Options** - Download as CSV or JSON directly from the UI
+- **Live Metrics** - Update timestamp shows when data was last collected
+
+#### 🔗 API Documentation
+Access Swagger API docs at: http://localhost:8000/docs
+
+### Command-line Options (main.py)
 ```bash
 python main.py --help
 
@@ -77,11 +124,15 @@ Options:
 ## Project Structure
 
 ```
-├── main.py                 # Main entry point and orchestrator
+├── app.py                 # FastAPI web server
+├── dashboard.html         # Interactive web dashboard
+├── main.py                # CLI entry point and orchestrator
 ├── config.py              # Configuration settings
 ├── analysis.py            # Growth analysis and trends module
 ├── export.py              # CSV/JSON export functionality
 ├── requirements.txt       # Python dependencies
+├── run_dashboard.sh       # Dashboard startup script (macOS/Linux)
+├── run_dashboard.bat      # Dashboard startup script (Windows)
 ├── scrapers/
 │   ├── __init__.py
 │   ├── skool.py          # Skool.com scraper
